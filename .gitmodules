@@ -1,0 +1,3 @@
+[submodule "snake_core"]
+	path = snake_core
+	url = git@github.com:Mrjiong438/snake_core.git
