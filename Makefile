@@ -1,10 +1,12 @@
-.PHONY: clean
+.PHONY: clean all
 
 
 object = build/main.o build/snake_ncurses.o build/snake.o 
 objectWin = build/mainWin.o build/snakeWin.o build/snake_ncursesWin.o
 CFLUG = -s -O2 -Os -Wl,--gc-sections -lncursesw #-static -DNCURSES_STATIC -ltinfo
 CFLUGwin = -I ./ncurses_mingw64/include -L ./ncurses_mingw64/lib -s -O2 -Os -Wl,--gc-sections -static -DNCURSES_STATIC -lncursesw
+
+all : snake snake.exe
 
 snake : $(object)
 	gcc $(object) -o $@ $(CFLUG)

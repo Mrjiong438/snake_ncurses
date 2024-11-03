@@ -6,9 +6,10 @@ int draw();
 
 int main(int argc,char *argv[]){
 
+GAMESTART:
 	srand((unsigned)time(NULL));
-	genfood();
 	initHeadPos(3,3,'>');
+	genfood();
 
 	initscr();
 	curs_set(0);
@@ -36,13 +37,35 @@ int main(int argc,char *argv[]){
 
 		switch (change()){
 			case 1:
-				endwin();
-				printf("gameover\n");
-				return 0;
+				clear();
+				printw("\
+#----------------#\n\
+|                |\n\
+|                |\n\
+|                |\n\
+|    gameover    |\n\
+|                |\n\
+|                |\n\
+|                |\n\
+|                |\n\
+#----------------#\n\
+						");
+				goto GAMEOVER;
 			case 2:
-				endwin();
-				printf("wini\n");
-				return 0;
+				clear();
+				printw("\
+#----------------#\n\
+|                |\n\
+|                |\n\
+|                |\n\
+|      win       |\n\
+|                |\n\
+|                |\n\
+|                |\n\
+|                |\n\
+#----------------#\n\
+						");
+				goto GAMEOVER;
 		}
 
 		nowTime = timeInUseconds();
@@ -50,6 +73,10 @@ int main(int argc,char *argv[]){
 		usleep(waitTime(nextTime,nowTime));
 	}
 
+GAMEOVER:
+	refresh();
+	nodelay(stdscr, FALSE);
+	getch();
 	endwin();
 	return 0;
 }
